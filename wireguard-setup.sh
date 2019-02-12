@@ -100,7 +100,7 @@ function manageMenu () {
 			revokeClient
 		;;
 		3)
-			removeOpenVPN
+			removeWireGuard
 		;;
 		4)
 			exit 0
@@ -108,7 +108,7 @@ function manageMenu () {
 	esac
 }
 
-# Check if OpenVPN is already installed
+# Check if WireGuard is already installed
 if [[ -e /etc/wireguard/wg0.conf ]]; then
 	manageMenu
 else
