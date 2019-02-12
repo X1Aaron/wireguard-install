@@ -66,9 +66,16 @@ apt-get install wireguard -y
 sed -i 's/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/g' /etc/sysctl.conf
 sysctl -p
 echo 1 > /proc/sys/net/ipv4/ip_forward
-Umask 077
-wg genkey | tee server_private_key | wg pubkey > server_public_key
-wg genkey | tee client_private_key | wg pubkey > client_public_key
+
+
+umask 077
+mkdir /etc/wireguard/keys/
+mkdir /etc/wireguard/keys/server/
+mkdir /etc/wireguard/keys/clients/
+mkdir /etc/wireguard/clients/
+wg genkey | tee /etc/wireguard/keys/server/private_key | wg pubkey > /etc/wireguard/keys/server/public_key
+
+
 
 echo "[Interface]" >> /etc/wireguard/wg0.conf
 echo "Address = 192.168.5.1/24" >> /etc/wireguard/wg0.conf
@@ -79,14 +86,17 @@ echo "[Peer]" >> /etc/wireguard/wg0.conf
 echo "PublicKey = <CLIENT_PUBLIC_KEY>" >> /etc/wireguard/wg0.conf
 echo "AllowedIPs = 192.168.5.2/32" >> /etc/wireguard/wg0.conf
 
-echo "[Interface]" >> /etc/wireguard/client.conf/wg0-client.conf
-echo "Address = 192.168.5.2/32" >> /etc/wireguard/client.conf/wg0-client.conf
-echo "PrivateKey = <CLIENT_PRIVATE_KEY>" >> /etc/wireguard/client.conf/wg0-client.conf
-echo "" >> /etc/wireguard/client.conf/wg0-client.conf
-echo "[Peer]" >> /etc/wireguard/client.conf/wg0-client.conf
-echo "PublicKey = <SERVER_PUBLIC_KEY>" >> /etc/wireguard/client.conf/wg0-client.conf
-echo "Endpoint = <SERVER_PUBLIC_IP>:51820" >> /etc/wireguard/client.conf/wg0-client.conf
-echo "AllowedIPs = 0.0.0.0/0" >> /etc/wireguard/client.conf/wg0-client.conf
+wg genkey | tee /etc/wireguard/keys/clients/$CLIENT_NAME/private_key | wg pubkey > /etc/wireguard/keys/clients/$CLIENT_NAME/public_key
+
+
+echo "[Interface]" >> /etc/wireguard/clients/$CLIENT_NAME.conf
+echo "Address = 192.168.5.2/32" >> /etc/wireguard/clients/$CLIENT_NAME.conf
+echo "PrivateKey = <CLIENT_PRIVATE_KEY>" >> /etc/wireguard/clients/$CLIENT_NAME.conf
+echo "" >> /etc/wireguard/clients/$CLIENT_NAME.conf
+echo "[Peer]" >> /etc/wireguard/clients/$CLIENT_NAME.conf
+echo "PublicKey = <SERVER_PUBLIC_KEY>" >> /etc/wireguard/clients/$CLIENT_NAME.conf
+echo "Endpoint = <SERVER_PUBLIC_IP>:51820" >> /etc/wireguard/clients/$CLIENT_NAME.conf
+echo "AllowedIPs = 0.0.0.0/0" >> /etc/wireguard/clients/$CLIENT_NAME.conf
 }
 
 function manageMenu () {
