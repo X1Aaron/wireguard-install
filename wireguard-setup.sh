@@ -57,12 +57,12 @@ echo "Address = $CLIENT_IP/32" >> /etc/wireguard/clients/$CLIENT_NAME.conf
 echo "PrivateKey = $CLIENT_PRIVATE_KEY" >> /etc/wireguard/clients/$CLIENT_NAME.conf
 echo "" >> /etc/wireguard/clients/$CLIENT_NAME.conf
 echo "[Peer]" >> /etc/wireguard/clients/$CLIENT_NAME.conf
-echo "PublicKey = <SERVER_PUBLIC_KEY>" >> /etc/wireguard/clients/$CLIENT_NAME.conf
-echo "Endpoint = <SERVER_PUBLIC_IP>:51820" >> /etc/wireguard/clients/$CLIENT_NAME.conf
+echo "PublicKey = $SERVER_PUBLIC_KEY" >> /etc/wireguard/clients/$CLIENT_NAME.conf
+echo "Endpoint = $PUBLIC_IP:51820" >> /etc/wireguard/clients/$CLIENT_NAME.conf
 echo "AllowedIPs = 0.0.0.0/0" >> /etc/wireguard/clients/$CLIENT_NAME.conf
 echo "" >> /etc/wireguard/wg0.conf
 echo "[Peer]" >> /etc/wireguard/wg0.conf
-echo "PublicKey = <CLIENT_PUBLIC_KEY>" >> /etc/wireguard/wg0.conf
+echo "PublicKey = $CLIENT_PUBLIC_KEY" >> /etc/wireguard/wg0.conf
 echo "AllowedIPs = $CLIENT_IP" >> /etc/wireguard/wg0.conf
 wg-quick down wg0
 wg-quick up wg0
