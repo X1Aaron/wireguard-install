@@ -69,6 +69,7 @@ echo "AllowedIPs = $CLIENT_IP" >> /etc/wireguard/wg0.conf
 wg-quick down wg0
 wg-quick up wg0
 sudo wg show
+cat /etc/wireguard/clients/$CLIENT_NAME.conf
 }
 
 function manageMenu () {
@@ -90,7 +91,7 @@ function manageMenu () {
 
 	case $MENU_OPTION in
 		1)
-			newClient
+			create_client
 		;;
 		2)
 			revokeClient
