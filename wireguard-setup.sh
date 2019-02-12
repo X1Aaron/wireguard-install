@@ -69,28 +69,24 @@ echo 1 > /proc/sys/net/ipv4/ip_forward
 Umask 077
 wg genkey | tee server_private_key | wg pubkey > server_public_key
 wg genkey | tee client_private_key | wg pubkey > client_public_key
-cat <<EOF | /etc/wireguard/wg0.conf
-[Interface]
-Address = 192.168.5.1/24
-PrivateKey = <SERVER_PRIVATE_KEY>
-ListenPort = 51820
 
-[Peer]
-PublicKey = <CLIENT_PUBLIC_KEY>
-AllowedIPs = 192.168.5.2/32
-EOF
+echo "[Interface]" >> /etc/wireguard/wg0.conf
+echo "Address = 192.168.5.1/24" >> /etc/wireguard/wg0.conf
+echo "PrivateKey = <SERVER_PRIVATE_KEY>" >> /etc/wireguard/wg0.conf
+echo "ListenPort = 51820" >> /etc/wireguard/wg0.conf
+echo "" >> /etc/wireguard/wg0.conf
+echo "[Peer]" >> /etc/wireguard/wg0.conf
+echo "PublicKey = <CLIENT_PUBLIC_KEY>" >> /etc/wireguard/wg0.conf
+echo "AllowedIPs = 192.168.5.2/32" >> /etc/wireguard/wg0.conf
 
-cat <<EOF | wg0-client.conf
-[Interface]
-Address = 192.168.5.2/32
-PrivateKey = <CLIENT_PRIVATE_KEY>
-
-[Peer]
-PublicKey = <SERVER_PUBLIC_KEY>
-Endpoint = <SERVER_PUBLIC_IP>:51820
-AllowedIPs = 0.0.0.0/0
-EOF
-}
+echo "[Interface]" >> /etc/wireguard/client.conf/wg0-client.conf
+echo "Address = 192.168.5.2/32" >> /etc/wireguard/client.conf/wg0-client.conf
+echo "PrivateKey = <CLIENT_PRIVATE_KEY>" >> /etc/wireguard/client.conf/wg0-client.conf
+echo "" >> /etc/wireguard/client.conf/wg0-client.conf
+echo "[Peer]" >> /etc/wireguard/client.conf/wg0-client.conf
+echo "PublicKey = <SERVER_PUBLIC_KEY>" >> /etc/wireguard/client.conf/wg0-client.conf
+echo "Endpoint = <SERVER_PUBLIC_IP>:51820" >> /etc/wireguard/client.conf/wg0-client.conf
+echo "AllowedIPs = 0.0.0.0/0" >> /etc/wireguard/client.conf/wg0-client.conf
 
 function manageMenu () {
 
