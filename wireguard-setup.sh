@@ -79,10 +79,7 @@ echo "[Interface]" >> /etc/wireguard/wg0.conf
 echo "Address = 192.168.5.1/24" >> /etc/wireguard/wg0.conf
 echo "PrivateKey = <SERVER_PRIVATE_KEY>" >> /etc/wireguard/wg0.conf
 echo "ListenPort = 51820" >> /etc/wireguard/wg0.conf
-echo "" >> /etc/wireguard/wg0.conf
-echo "[Peer]" >> /etc/wireguard/wg0.conf
-echo "PublicKey = <CLIENT_PUBLIC_KEY>" >> /etc/wireguard/wg0.conf
-echo "AllowedIPs = 192.168.5.2/32" >> /etc/wireguard/wg0.conf
+
 
 # start wiregaurd + permissions + service
 
@@ -99,6 +96,10 @@ echo "[Peer]" >> /etc/wireguard/clients/$CLIENT_NAME.conf
 echo "PublicKey = <SERVER_PUBLIC_KEY>" >> /etc/wireguard/clients/$CLIENT_NAME.conf
 echo "Endpoint = <SERVER_PUBLIC_IP>:51820" >> /etc/wireguard/clients/$CLIENT_NAME.conf
 echo "AllowedIPs = 0.0.0.0/0" >> /etc/wireguard/clients/$CLIENT_NAME.conf
+echo "" >> /etc/wireguard/wg0.conf
+echo "[Peer]" >> /etc/wireguard/wg0.conf
+echo "PublicKey = <CLIENT_PUBLIC_KEY>" >> /etc/wireguard/wg0.conf
+echo "AllowedIPs = 192.168.5.2/32" >> /etc/wireguard/wg0.conf
 }
 
 function manageMenu () {
