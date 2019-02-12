@@ -58,7 +58,7 @@ apt update -y
 apt upgrade -y
 ufw allow ssh
 ufw allow 51820/udp
-ufw enable -y
+ufw --force enable
 add-apt-repository ppa:wireguard/wireguard -y
 apt-get update -y
 apt-get install wireguard -y
