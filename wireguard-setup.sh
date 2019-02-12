@@ -53,7 +53,7 @@ function installQuestions () {
 }
 
 function installWireGuard () {
-
+installQuestions
 apt update -y
 apt upgrade -y
 ufw allow ssh
