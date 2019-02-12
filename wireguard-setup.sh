@@ -89,7 +89,7 @@ PrivateKey = <CLIENT_PRIVATE_KEY>
 PublicKey = <SERVER_PUBLIC_KEY>
 Endpoint = <SERVER_PUBLIC_IP>:51820
 AllowedIPs = 0.0.0.0/0
-
+EOF
 }
 
 function manageMenu () {
