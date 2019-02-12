@@ -27,7 +27,7 @@ umask 077
 mkdir /etc/wireguard/server/
 
 wg genkey | tee /etc/wireguard/server/private_key | wg pubkey > /etc/wireguard/server/public_key
-SERVER_PUBLIC_KEY=`cat `/etc/wireguard/server/public_key`
+SERVER_PUBLIC_KEY=`cat /etc/wireguard/server/public_key`
 echo "SERVER_PUBLIC_KEY: $SERVER_PUBLIC_KEY"
 echo "SERVER_PUBLIC_KEY=$SERVER_PUBLIC_KEY" >> /etc/wireguard/wg.conf
 SERVER_PRIVATE_KEY=`cat /etc/wireguard/server/private_key`
