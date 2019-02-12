@@ -32,8 +32,8 @@ SERVER_PRIVATE_KEY=`cat `/etc/wireguard/server/private_key`
 mkdir /etc/wireguard/clients/
 
 echo "[Interface]" >> /etc/wireguard/wg0.conf
-echo "Address = 192.168.5.1/24" >> /etc/wireguard/wg0.conf
-echo "PrivateKey = <SERVER_PRIVATE_KEY>" >> /etc/wireguard/wg0.conf
+echo "Address = $SERVER_IP/24" >> /etc/wireguard/wg0.conf
+echo "PrivateKey = $SERVER_PRIVATE_KEY" >> /etc/wireguard/wg0.conf
 echo "ListenPort = 51820" >> /etc/wireguard/wg0.conf
 
 wg-quick up wg0
