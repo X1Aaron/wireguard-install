@@ -1,4 +1,6 @@
 
+source /etc/wireguard/wg.conf
+
 function installQuestions () {
 
 	echo "Welcome to the WireGuard installer!"
