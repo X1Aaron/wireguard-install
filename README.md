@@ -6,24 +6,21 @@ This script will let you setup a simple, safer, faster and more modern VPN serve
 
 First, get the script and make it executable :
 
-curl -O https://raw.githubusercontent.com/Angristan/openvpn-install/master/openvpn-install.sh
-chmod +x openvpn-install.sh
+curl -O https://raw.githubusercontent.com/aaronstuder/wireguard-install/master/wireguard-setup.sh
+chmod +x wireguard-install.sh
 
 Then run it :
 
-./openvpn-install.sh
+./wireguard-install.sh
 
-You need to run the script as root and have the TUN module enabled.
+You need to run the script as root.
 
-The first time you run it, you'll have to follow the assistant and answer a few questions to setup your VPN server.
+The first time you run it, you'll have to answer a few questions to setup your VPN server.
 
-When OpenVPN is installed, you can run the script again, and you will get the choice to :
+When WireGuard is installed, you can run the script again, and you will get the choice to :
 
     Add a client
     Remove a client
-    Uninstall OpenVPN
+    Uninstall WireGuard
 
-In your home directory, you will have .ovpn files. These are the client configuration files. Download them from your server and connect using your favorite OpenVPN client.
-
-
-This script automatically setups WireGuard in a "Road Warrior Scenario" and generates client .conf files for quick and easy deployment.
+In /etc/wireguard/clients/, you will have .conf files. These are the client configuration files. Download them from your server and connect using your WireGuard client.
