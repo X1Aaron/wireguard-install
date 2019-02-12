@@ -1,25 +1,14 @@
 
 source /etc/wireguard/wg.conf > /dev/null 2>&1
 
-function installQuestions () {
-
-	echo "Welcome to the WireGuard installer!"
-	echo "The git repository is available at: https://github.com/xxx/wireguard-install"
-	echo ""
-
-
-
-	echo ""
-	echo "Okay, that was all I needed. We are ready to setup your wireguard server now."
-	echo "You will be able to generate a client at the end of the installation."
-	read -n1 -r -p "Press any key to continue..."
-}
-
 function installWireGuard () {
-installQuestions
 PUBLIC_IP=`curl -s ifconfig.me`
 echo "Public IP: $PUBLIC_IP"
 echo "PUBLIC_IP=$PUBLIC_IP" >> /etc/wireguard/wg.conf
+Server IP Address?
+read SERVER_IP
+echo "SERVER_IP: $SERVER_IP"
+echo "SERVER_IP=$SERVER_IP" >> /etc/wireguard/wg.conf
 ufw allow ssh
 ufw allow 51820/udp
 ufw --force enable
@@ -39,7 +28,7 @@ wg genkey | tee /etc/wireguard/server/private_key | wg pubkey > /etc/wireguard/s
 SERVER_PUBLIC_KEY=`cat `/etc/wireguard/server/public_key`
 echo "SERVER_PUBLIC_KEY: $SERVER_PUBLIC_KEY"
 echo "SERVER_PUBLIC_KEY=$SERVER_PUBLIC_KEY" >> /etc/wireguard/wg.conf
-
+SERVER_PRIVATE_KEY=`cat `/etc/wireguard/server/private_key`
 mkdir /etc/wireguard/clients/
 
 echo "[Interface]" >> /etc/wireguard/wg0.conf
