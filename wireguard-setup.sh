@@ -87,6 +87,7 @@ echo "[Peer]" >> /etc/wireguard/client.conf/wg0-client.conf
 echo "PublicKey = <SERVER_PUBLIC_KEY>" >> /etc/wireguard/client.conf/wg0-client.conf
 echo "Endpoint = <SERVER_PUBLIC_IP>:51820" >> /etc/wireguard/client.conf/wg0-client.conf
 echo "AllowedIPs = 0.0.0.0/0" >> /etc/wireguard/client.conf/wg0-client.conf
+}
 
 function manageMenu () {
 
