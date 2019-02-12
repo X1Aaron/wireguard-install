@@ -43,6 +43,7 @@ echo "Address = 192.168.5.1/24" >> /etc/wireguard/wg0.conf
 echo "PrivateKey = <SERVER_PRIVATE_KEY>" >> /etc/wireguard/wg0.conf
 echo "ListenPort = 51820" >> /etc/wireguard/wg0.conf
 
+wg-quick up wg0
 
 # start wiregaurd + permissions + service
 
@@ -50,7 +51,8 @@ create_client
 }
 
 function create_client () {
-
+echo Client Name?
+read CLIENT_NAME
 wg genkey | tee /etc/wireguard/keys/clients/$CLIENT_NAME/private_key | wg pubkey > /etc/wireguard/keys/clients/$CLIENT_NAME/public_key
 echo "[Interface]" >> /etc/wireguard/clients/$CLIENT_NAME.conf
 echo "Address = 192.168.5.2/32" >> /etc/wireguard/clients/$CLIENT_NAME.conf
@@ -64,6 +66,8 @@ echo "" >> /etc/wireguard/wg0.conf
 echo "[Peer]" >> /etc/wireguard/wg0.conf
 echo "PublicKey = <CLIENT_PUBLIC_KEY>" >> /etc/wireguard/wg0.conf
 echo "AllowedIPs = 192.168.5.2/32" >> /etc/wireguard/wg0.conf
+wg-quick down wg0
+wg-quick up wg0
 }
 
 function manageMenu () {
