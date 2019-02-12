@@ -84,7 +84,11 @@ echo "[Peer]" >> /etc/wireguard/wg0.conf
 echo "PublicKey = <CLIENT_PUBLIC_KEY>" >> /etc/wireguard/wg0.conf
 echo "AllowedIPs = 192.168.5.2/32" >> /etc/wireguard/wg0.conf
 
+# start wiregaurd + permissions + service
 
+create_client
+
+function create_client () {
 
 wg genkey | tee /etc/wireguard/keys/clients/$CLIENT_NAME/private_key | wg pubkey > /etc/wireguard/keys/clients/$CLIENT_NAME/public_key
 echo "[Interface]" >> /etc/wireguard/clients/$CLIENT_NAME.conf
@@ -106,7 +110,7 @@ function manageMenu () {
 	echo "It looks like WireGuard is already installed."
 	echo ""
 	echo "What do you want to do?"
-	echo "   1) Add a new peer"
+	echo "   1) Add a New Client"
 	echo "   2) Revoke existing peer"
 	echo "   3) Remove WireGuard"
 	echo "   4) Exit"
