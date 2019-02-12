@@ -2,7 +2,7 @@
 
 This script will let you setup a simple, safer, faster and more modern VPN server in just a few minutes.
 
-#Usage
+## Usage
 
 First, get the script and make it executable:
 ```
