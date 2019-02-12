@@ -37,6 +37,7 @@ echo "PrivateKey = $SERVER_PRIVATE_KEY" >> /etc/wireguard/wg0.conf
 echo "ListenPort = 51820" >> /etc/wireguard/wg0.conf
 
 wg-quick up wg0
+sudo wg show
 
 # start wiregaurd + permissions + service
 
@@ -65,6 +66,7 @@ echo "PublicKey = <CLIENT_PUBLIC_KEY>" >> /etc/wireguard/wg0.conf
 echo "AllowedIPs = $CLIENT_IP" >> /etc/wireguard/wg0.conf
 wg-quick down wg0
 wg-quick up wg0
+sudo wg show
 }
 
 function manageMenu () {
