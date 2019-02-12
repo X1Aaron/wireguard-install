@@ -37,6 +37,8 @@ echo "[Interface]" >> /etc/wireguard/wg0.conf
 echo "Address = $SERVER_IP/24" >> /etc/wireguard/wg0.conf
 echo "PrivateKey = $SERVER_PRIVATE_KEY" >> /etc/wireguard/wg0.conf
 echo "ListenPort = 51820" >> /etc/wireguard/wg0.conf
+echo "PostUp = iptables -A FORWARD -i %i -j ACCEPT; iptables -A FORWARD -o %i -j ACCEPT; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE"
+echo "PostDown = iptables -D FORWARD -i %i -j ACCEPT; iptables -D FORWARD -o %i -j ACCEPT; iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE"
 chown -v root:root /etc/wireguard/wg0.conf
 chmod -v 600 /etc/wireguard/wg0.conf
 wg-quick up wg0
