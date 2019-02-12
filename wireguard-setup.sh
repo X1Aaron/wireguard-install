@@ -54,8 +54,8 @@ function installQuestions () {
 
 function installWireGuard () {
 
-apt-update -y
-apt-upgrade -y
+apt update -y
+apt upgrade -y
 ufw allow ssh
 ufw allow 51820/udp
 ufw enable
