@@ -5,7 +5,7 @@ function installWireGuard () {
 PUBLIC_IP=`curl -s ifconfig.me`
 echo "Public IP: $PUBLIC_IP"
 echo "PUBLIC_IP=$PUBLIC_IP" >> /etc/wireguard/wg.conf
-Server IP Address?
+echo Server IP Address?
 read SERVER_IP
 echo "SERVER_IP: $SERVER_IP"
 echo "SERVER_IP=$SERVER_IP" >> /etc/wireguard/wg.conf
