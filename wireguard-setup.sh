@@ -1,4 +1,5 @@
 
+mkdir /etc/wireguard
 touch /etc/wireguard/wg.conf
 source /etc/wireguard/wg.conf > /dev/null 2>&1
 
