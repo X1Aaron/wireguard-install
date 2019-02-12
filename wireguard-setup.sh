@@ -62,6 +62,7 @@ echo "ListenPort = 51820" >> /etc/wireguard/wg0.conf
 # start wiregaurd + permissions + service
 
 create_client
+}
 
 function create_client () {
 
