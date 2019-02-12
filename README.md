@@ -7,6 +7,7 @@ This script will let you setup a simple, safer, faster and more modern VPN serve
 First, get the script and make it executable :
 
 curl -O https://raw.githubusercontent.com/aaronstuder/wireguard-install/master/wireguard-install.sh
+
 chmod +x wireguard-install.sh
 
 Then run it :
