@@ -35,11 +35,11 @@ echo "[Interface]" >> /etc/wireguard/wg0.conf
 echo "Address = $SERVER_IP/24" >> /etc/wireguard/wg0.conf
 echo "PrivateKey = $SERVER_PRIVATE_KEY" >> /etc/wireguard/wg0.conf
 echo "ListenPort = 51820" >> /etc/wireguard/wg0.conf
-
+chown -v root:root /etc/wireguard/wg0.conf
+chmod -v 600 /etc/wireguard/wg0.conf
 wg-quick up wg0
+systemctl enable wg-quick@wg0.service #Enable the interface at boot
 sudo wg show
-
-# start wiregaurd + permissions + service
 
 create_client
 }
