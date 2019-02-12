@@ -69,9 +69,7 @@ echo 1 > /proc/sys/net/ipv4/ip_forward
 
 
 umask 077
-mkdir /etc/wireguard/keys/
-mkdir /etc/wireguard/keys/server/
-mkdir /etc/wireguard/keys/clients/
+mkdir /etc/wireguard/server/
 mkdir /etc/wireguard/clients/
 wg genkey | tee /etc/wireguard/keys/server/private_key | wg pubkey > /etc/wireguard/keys/server/public_key
 
@@ -86,9 +84,9 @@ echo "[Peer]" >> /etc/wireguard/wg0.conf
 echo "PublicKey = <CLIENT_PUBLIC_KEY>" >> /etc/wireguard/wg0.conf
 echo "AllowedIPs = 192.168.5.2/32" >> /etc/wireguard/wg0.conf
 
+
+
 wg genkey | tee /etc/wireguard/keys/clients/$CLIENT_NAME/private_key | wg pubkey > /etc/wireguard/keys/clients/$CLIENT_NAME/public_key
-
-
 echo "[Interface]" >> /etc/wireguard/clients/$CLIENT_NAME.conf
 echo "Address = 192.168.5.2/32" >> /etc/wireguard/clients/$CLIENT_NAME.conf
 echo "PrivateKey = <CLIENT_PRIVATE_KEY>" >> /etc/wireguard/clients/$CLIENT_NAME.conf
