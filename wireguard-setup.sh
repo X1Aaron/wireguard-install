@@ -1,5 +1,6 @@
 
 function installQuestions () {
+
 	echo "Welcome to the WireGuard installer!"
 	echo "The git repository is available at: https://github.com/xxx/wireguard-install"
 	echo ""
@@ -88,9 +89,11 @@ PrivateKey = <CLIENT_PRIVATE_KEY>
 PublicKey = <SERVER_PUBLIC_KEY>
 Endpoint = <SERVER_PUBLIC_IP>:51820
 AllowedIPs = 0.0.0.0/0
+
 }
 
 function manageMenu () {
+
 	clear
 	echo "Welcome to WireGuard-install!"
 	echo "The git repository is available at: https://github.com/xxx/wireguard-install"
