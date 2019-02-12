@@ -61,8 +61,8 @@ ufw allow 51820/udp
 ufw --force enable
 add-apt-repository ppa:wireguard/wireguard -y
 apt-get update -y
-apt-get install wireguard -y
 apt-get install linux-headers-`uname -r` -y
+apt-get install wireguard -y
 sed -i 's/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/g' /etc/sysctl.conf
 sysctl -p
 echo 1 > /proc/sys/net/ipv4/ip_forward
