@@ -53,8 +53,8 @@ echo IP Address?
 read CLIENT_IP
 mkdir /etc/wireguard/clients/$CLIENT_NAME/
 wg genkey | tee /etc/wireguard/clients/$CLIENT_NAME/private_key | wg pubkey > /etc/wireguard/clients/$CLIENT_NAME/public_key
-CLIENT_PRIVATE_KEY=`cat /etc/wireguard/keys/clients/$CLIENT_NAME/private_key`
-CLIENT_PUBLIC_KEY=`cat /etc/wireguard/keys/clients/$CLIENT_NAME/public_key`
+CLIENT_PRIVATE_KEY=`cat /etc/wireguard/clients/$CLIENT_NAME/private_key`
+CLIENT_PUBLIC_KEY=`cat /etc/wireguard/clients/$CLIENT_NAME/public_key`
 echo "[Interface]" >> /etc/wireguard/clients/$CLIENT_NAME.conf
 echo "Address = $CLIENT_IP/32" >> /etc/wireguard/clients/$CLIENT_NAME.conf
 echo "PrivateKey = $CLIENT_PRIVATE_KEY" >> /etc/wireguard/clients/$CLIENT_NAME.conf
