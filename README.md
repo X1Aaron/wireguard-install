@@ -19,10 +19,9 @@ You need to run the script as root.
 
 The first time you run it, you'll have to answer a few questions to setup your VPN server.
 
-When WireGuard is installed, you can run the script again, and you will get the choice to :
+To add a client run .wireguard-install add-client client-name IP
+For Example:
 ```
-    Add a client
-    Remove a client
-    Uninstall WireGuard
+.wireguard-install add-client MacBook 192.168.10.2
 ```
 In /etc/wireguard/clients/, you will have .conf files. These are the client configuration files. Download them from your server and connect using your WireGuard client.
