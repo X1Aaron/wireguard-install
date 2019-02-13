@@ -6,7 +6,9 @@ echo ""
 echo "This system in completely updated and rebooted before proceeding"
 echo ""
 read -n1 -r -p "Press any key to continue... or CTRL + C to cancel"
+echo ""
 echo "Finding Public IP Address..."
+echo ""
 PUBLIC_IP=`curl -s ifconfig.me`
 echo "Public IP: $PUBLIC_IP"
 echo "PUBLIC_IP=$PUBLIC_IP" >> /etc/wireguard/wg.conf
@@ -14,19 +16,23 @@ echo "Adding Firewall Rules and Enabling Firewall..."
 ufw allow ssh
 ufw allow 51820/udp
 ufw --force enable
+echo ""
 echo "Installing WireGuard..."
 add-apt-repository ppa:wireguard/wireguard -y
 apt-get update -y
 apt-get install linux-headers-`uname -r` -y
 apt-get install wireguard -y
+echo ""
 echo "Enabling IPv4 Forwarding..."
 echo "net.ipv4.ip_forward = 1 net.ipv6.conf.all.forwarding = 1" > /etc/sysctl.d/wg.conf
 sysctl --system
+echo ""
 echo "Creating Folders and Files..."
 mkdir /etc/wireguard
 touch /etc/wireguard/wg.conf
 mkdir /etc/wireguard/server/
 mkdir /etc/wireguard/clients/
+echo ""
 echo "Generating Server Keys..."
 wg genkey | tee /etc/wireguard/server/private_key | wg pubkey > /etc/wireguard/server/public_key
 SERVER_PUBLIC_KEY=`cat /etc/wireguard/server/public_key`
@@ -38,17 +44,21 @@ echo "[Interface]" >> /etc/wireguard/wg0.conf
 echo "Address = 192.168.10.1/24" >> /etc/wireguard/wg0.conf
 echo "PrivateKey = $SERVER_PRIVATE_KEY" >> /etc/wireguard/wg0.conf
 echo "ListenPort = 51820" >> /etc/wireguard/wg0.conf
-echo ""
+echo ""  >> /etc/wireguard/wg0.conf
 echo "PostUp = iptables -t nat -A POSTROUTING -o ens3 -j MASQUERADE; ip6tables -t nat -A POSTROUTING -o ens3 -j MASQUERADE" >> /etc/wireguard/wg0.conf
 echo "PostDown = iptables -t nat -D POSTROUTING -o ens3 -j MASQUERADE; ip6tables -t nat -D POSTROUTING -o ens3 -j MASQUERADE" >> /etc/wireguard/wg0.conf
+echo ""  >> /etc/wireguard/wg0.conf
 echo ""
 echo "Setting Permissions..."
 chown -v root:root /etc/wireguard/wg0.conf
 chmod -v 600 /etc/wireguard/wg0.conf
+echo ""
 echo "Starting WireGuard..."
 systemctl start wg-quick@wg0
+echo ""
 echo "Enabling WireGuard Service..."
 systemctl enable wg-quick@wg0
+echo ""
 echo "WireGuard Server Setup Complete!..."
 echo ""
 sudo wg show
@@ -79,6 +89,7 @@ echo "[Peer]" >> /etc/wireguard/clients/$1.conf
 echo "PublicKey = $SERVER_PUBLIC_KEY" >> /etc/wireguard/clients/$1.conf
 echo "Endpoint = $PUBLIC_IP:51820" >> /etc/wireguard/clients/$1.conf
 echo "AllowedIPs = 0.0.0.0/0" >> /etc/wireguard/clients/$1.conf
+echo ""
 echo "Updating Server..."
 echo "" >> /etc/wireguard/wg0.conf
 echo "# $1" >> /etc/wireguard/wg0.conf
