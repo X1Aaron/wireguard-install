@@ -47,9 +47,9 @@ echo "Setting Permissions..."
 chown -v root:root /etc/wireguard/wg0.conf
 chmod -v 600 /etc/wireguard/wg0.conf
 echo "Starting WireGuard..."
-wg-quick up wg0
+systemctl start wg-quick@wg0
 echo "Enabling WireGuard Service..."
-systemctl enable wg-quick@wg0.service
+systemctl enable wg-quick@wg0
 echo "WireGuard Server Setup Complete!..."
 echo ""
 sudo wg show
@@ -84,7 +84,7 @@ echo "" >> /etc/wireguard/wg0.conf
 echo "# $1" >> /etc/wireguard/wg0.conf
 echo "[Peer]" >> /etc/wireguard/wg0.conf
 echo "PublicKey = $CLIENT_PUBLIC_KEY" >> /etc/wireguard/wg0.conf
-echo "AllowedIPs = $2" >> /etc/wireguard/wg0.conf
+echo "AllowedIPs = $2/32" >> /etc/wireguard/wg0.conf
 echo ""
 echo "Restarting WireGuard..."
 echo ""
