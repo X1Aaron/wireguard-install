@@ -94,8 +94,6 @@ cat /etc/wireguard/clients/$1.conf
 echo ""
 echo "### /etc/wireguard/clients/$1.conf ####"
 echo ""
-echo "You can also find this .conf file here: /etc/wireguard/clients/$1.conf"
-echo ""
 }
 
 $@
