@@ -20,9 +20,8 @@ apt-get update -y
 apt-get install linux-headers-`uname -r` -y
 apt-get install wireguard -y
 echo "Enabling IPv4 Forwarding..."
-sed -i 's/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/g' /etc/sysctl.conf
-sysctl -p
-echo 1 > /proc/sys/net/ipv4/ip_forward
+echo "net.ipv4.ip_forward = 1 net.ipv6.conf.all.forwarding = 1" > /etc/sysctl.d/wg.conf
+sysctl --system
 echo "Creating Folders and Files..."
 mkdir /etc/wireguard
 touch /etc/wireguard/wg.conf
