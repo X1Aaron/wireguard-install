@@ -59,6 +59,7 @@ mkdir /etc/wireguard/clients/$1/
 wg genkey | tee /etc/wireguard/clients/$1/private_key | wg pubkey > /etc/wireguard/clients/$1/public_key
 CLIENT_PRIVATE_KEY=`cat /etc/wireguard/clients/$1/private_key`
 CLIENT_PUBLIC_KEY=`cat /etc/wireguard/clients/$1/public_key`
+echo "# $1" >> /etc/wireguard/clients/$1.conf
 echo "[Interface]" >> /etc/wireguard/clients/$1.conf
 echo "Address = $2/32" >> /etc/wireguard/clients/$1.conf
 echo "PrivateKey = $CLIENT_PRIVATE_KEY" >> /etc/wireguard/clients/$1.conf
