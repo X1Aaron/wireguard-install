@@ -88,6 +88,7 @@ if [[ -e /etc/wireguard/wg0.conf ]]; then
 echo "WireGuard is already installed!"
 echo "To add a client run .wireguard-install add_client client-name IP"
 echo "For Example: .wireguard-install add_client MacBook 10.0.0.16
+exit
 else
 	installWireGuard
 fi
