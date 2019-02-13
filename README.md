@@ -26,3 +26,7 @@ For Example:
 ./wireguard-install.sh add-client macbook 192.168.10.2
 ```
 In /etc/wireguard/clients/, you will have .conf files. These are the client configuration files. Download them from your server and connect using your WireGuard client.
+
+##To-Do
+* Auto Set IP Address
+* PiHole
