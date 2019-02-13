@@ -58,10 +58,13 @@ echo "For Example: ./wireguard-install.sh add-client macbook 192.168.10.2"
 }
 
 function add-client () {
+echo "Creating Directory - /etc/wireguard/clients/$1/"
 mkdir /etc/wireguard/clients/$1/
+echo "Generating Client Keys..."
 wg genkey | tee /etc/wireguard/clients/$1/private_key | wg pubkey > /etc/wireguard/clients/$1/public_key
 CLIENT_PRIVATE_KEY=`cat /etc/wireguard/clients/$1/private_key`
 CLIENT_PUBLIC_KEY=`cat /etc/wireguard/clients/$1/public_key`
+echo "Creating Client .conf File..."
 echo "# $1" >> /etc/wireguard/clients/$1.conf
 echo "[Interface]" >> /etc/wireguard/clients/$1.conf
 echo "Address = $2/32" >> /etc/wireguard/clients/$1.conf
@@ -71,13 +74,18 @@ echo "[Peer]" >> /etc/wireguard/clients/$1.conf
 echo "PublicKey = $SERVER_PUBLIC_KEY" >> /etc/wireguard/clients/$1.conf
 echo "Endpoint = $PUBLIC_IP:51820" >> /etc/wireguard/clients/$1.conf
 echo "AllowedIPs = 0.0.0.0/0" >> /etc/wireguard/clients/$1.conf
+echo "Updating Server..."
 echo "" >> /etc/wireguard/wg0.conf
 echo "# $1" >> /etc/wireguard/wg0.conf
 echo "[Peer]" >> /etc/wireguard/wg0.conf
 echo "PublicKey = $CLIENT_PUBLIC_KEY" >> /etc/wireguard/wg0.conf
 echo "AllowedIPs = $2" >> /etc/wireguard/wg0.conf
+echo "Restarting WireGuard..."
+echo ""
 wg-quick down wg0
+echo ""
 wg-quick up wg0
+echo ""
 sudo wg show
 echo ""
 echo "### /etc/wireguard/clients/$1.conf ####"
