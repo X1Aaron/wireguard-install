@@ -42,7 +42,7 @@ echo "SERVER_PUBLIC_KEY=$SERVER_PUBLIC_KEY" >> /etc/wireguard/wg.conf
 SERVER_PRIVATE_KEY=`cat /etc/wireguard/server/private_key`
 $ECHO_GREEN"Creating Server .conf File..."$NC
 echo "[Interface]" >> /etc/wireguard/wg0.conf
-echo "Address = 192.168.10.1/24" >> /etc/wireguard/wg0.conf
+echo "Address = 192.168.10.1" >> /etc/wireguard/wg0.conf
 echo "PrivateKey = $SERVER_PRIVATE_KEY" >> /etc/wireguard/wg0.conf
 echo "ListenPort = 51820" >> /etc/wireguard/wg0.conf
 echo ""  >> /etc/wireguard/wg0.conf
@@ -82,20 +82,18 @@ CLIENT_PRIVATE_KEY=`cat /etc/wireguard/clients/$1/private_key`
 CLIENT_PUBLIC_KEY=`cat /etc/wireguard/clients/$1/public_key`
 echo ""
 $ECHO_GREEN"Creating Client .conf File..."$NC
-echo "# $1" >> /etc/wireguard/clients/$1.conf
-echo "[Interface]" >> /etc/wireguard/clients/$1.conf
-echo "Address = $2/32" >> /etc/wireguard/clients/$1.conf
-echo "PrivateKey = $CLIENT_PRIVATE_KEY" >> /etc/wireguard/clients/$1.conf
-echo "" >> /etc/wireguard/clients/$1.conf
-echo "[Peer]" >> /etc/wireguard/clients/$1.conf
-echo "PublicKey = $SERVER_PUBLIC_KEY" >> /etc/wireguard/clients/$1.conf
-echo "Endpoint = $PUBLIC_IP:51820" >> /etc/wireguard/clients/$1.conf
-echo "AllowedIPs = 0.0.0.0/0" >> /etc/wireguard/clients/$1.conf
+echo "[Interface] #$1" >> /etc/wireguard/clients/$1/$1.conf
+echo "Address = $2" >> /etc/wireguard/clients/$1/$1.conf
+echo "PrivateKey = $CLIENT_PRIVATE_KEY" >> /etc/wireguard/clients/$1/$1.conf
+echo "" >> /etc/wireguard/clients/$1/$1.conf
+echo "[Peer]" >> /etc/wireguard/clients/$1/$1.conf
+echo "PublicKey = $SERVER_PUBLIC_KEY" >> /etc/wireguard/clients/$1/$1.conf
+echo "Endpoint = $PUBLIC_IP:51820" >> /etc/wireguard/clients/$1/$1.conf
+echo "AllowedIPs = 0.0.0.0/0" >> /etc/wireguard/clients/$1/$1.conf
 echo ""
 $ECHO_GREEN"Updating Server..."$NC
 echo "" >> /etc/wireguard/wg0.conf
-echo "# $1" >> /etc/wireguard/wg0.conf
-echo "[Peer]" >> /etc/wireguard/wg0.conf
+echo "[Peer] #$1" >> /etc/wireguard/wg0.conf
 echo "PublicKey = $CLIENT_PUBLIC_KEY" >> /etc/wireguard/wg0.conf
 echo "AllowedIPs = $2/32" >> /etc/wireguard/wg0.conf
 echo ""
