@@ -26,5 +26,6 @@ For Example:
 In /etc/wireguard/clients/, you will have .conf files. These are the client configuration files. Download them from your server and connect using the WireGuard client.
 
 ## To-Do
+* IPv6
 * Auto Set IP Address
 * PiHole
