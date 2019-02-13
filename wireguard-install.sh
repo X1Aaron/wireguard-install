@@ -2,6 +2,11 @@
 source /etc/wireguard/wg.conf > /dev/null 2>&1
 
 function installWireGuard () {
+echo ""
+echo "Make sure this system in completely update to date before proceeding"
+echo ""
+echo
+
 echo "Finding Public IP Address..."
 PUBLIC_IP=`curl -s ifconfig.me`
 echo "Public IP: $PUBLIC_IP"
