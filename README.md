@@ -29,3 +29,4 @@ In /etc/wireguard/clients/, you will have .conf files. These are the client conf
 * IPv6
 * Auto Set IP Address
 * PiHole
+* ens3/eth0/etc
