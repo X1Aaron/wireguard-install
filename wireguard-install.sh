@@ -85,6 +85,7 @@ $ECHO_GREEN"Creating Client .conf File..."$NC
 echo "[Interface] #$1" >> /etc/wireguard/clients/$1/$1.conf
 echo "Address = $2" >> /etc/wireguard/clients/$1/$1.conf
 echo "PrivateKey = $CLIENT_PRIVATE_KEY" >> /etc/wireguard/clients/$1/$1.conf
+echo "DNS = 176.103.130.130,176.103.130.131" >> /etc/wireguard/clients/$1/$1.conf
 echo "" >> /etc/wireguard/clients/$1/$1.conf
 echo "[Peer]" >> /etc/wireguard/clients/$1/$1.conf
 echo "PublicKey = $SERVER_PUBLIC_KEY" >> /etc/wireguard/clients/$1/$1.conf
