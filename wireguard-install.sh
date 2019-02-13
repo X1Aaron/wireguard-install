@@ -53,8 +53,8 @@ echo ""
 sudo wg show
 echo ""
 echo "WireGuard is installed!"
-echo "To add a client run .wireguard-install add-client client-name IP"
-echo "For Example: .wireguard-install add-client MacBook 192.168.10.2"
+echo "To add a client run ./wireguard-install.sh add-client client-name IP"
+echo "For Example: ./wireguard-install.sh add-client macbook 192.168.10.2"
 }
 
 function add-client () {
@@ -92,8 +92,8 @@ echo ""
 if [[ -e /etc/wireguard/wg0.conf ]]; then
 echo ""
 echo "WireGuard is already installed!"
-echo "To add a client run .wireguard-install add-client client-name IP"
-echo "For Example: .wireguard-install add-client MacBook 192.168.10.2"
+echo "To add a client run ./wireguard-install.sh add-client client-name IP"
+echo "For Example: ./wireguard-install.sh add-client macbook 192.168.10.2"
 echo ""
 exit
 else
