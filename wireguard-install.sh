@@ -5,7 +5,7 @@ function installWireGuard () {
 echo ""
 echo "Make sure this system in completely update to date before proceeding"
 echo ""
-echo
+read -n1 -r -p "Press any key to continue..."
 
 echo "Finding Public IP Address..."
 PUBLIC_IP=`curl -s ifconfig.me`
