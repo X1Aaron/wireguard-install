@@ -54,6 +54,7 @@ echo ""
 sudo wg show
 echo ""
 echo "WireGuard is installed!"
+echo ""
 echo "To add a client run ./wireguard-install.sh add-client client-name IP"
 echo "For Example: ./wireguard-install.sh add-client macbook 192.168.10.2"
 }
