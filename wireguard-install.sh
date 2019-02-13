@@ -6,10 +6,6 @@ echo "Finding Public IP Address..."
 PUBLIC_IP=`curl -s ifconfig.me`
 echo "Public IP: $PUBLIC_IP"
 echo "PUBLIC_IP=$PUBLIC_IP" >> /etc/wireguard/wg.conf
-echo Server IP Address?
-read SERVER_IP
-echo "SERVER_IP: $SERVER_IP"
-echo "SERVER_IP=$SERVER_IP" >> /etc/wireguard/wg.conf
 echo "Adding Firewall Rules and Enabling Firewall..."
 ufw allow ssh
 ufw allow 51820/udp
@@ -36,7 +32,7 @@ echo "SERVER_PUBLIC_KEY=$SERVER_PUBLIC_KEY" >> /etc/wireguard/wg.conf
 SERVER_PRIVATE_KEY=`cat /etc/wireguard/server/private_key`
 echo "Creating Server .conf File..."
 echo "[Interface]" >> /etc/wireguard/wg0.conf
-echo "Address = $SERVER_IP/24" >> /etc/wireguard/wg0.conf
+echo "Address = 192.168.10.1/24" >> /etc/wireguard/wg0.conf
 echo "PrivateKey = $SERVER_PRIVATE_KEY" >> /etc/wireguard/wg0.conf
 echo "ListenPort = 51820" >> /etc/wireguard/wg0.conf
 echo "PostUp = iptables -A FORWARD -i %i -j ACCEPT; iptables -A FORWARD -o %i -j ACCEPT; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE"
@@ -84,7 +80,7 @@ if [[ -e /etc/wireguard/wg0.conf ]]; then
 echo ""
 echo "WireGuard is already installed!"
 echo "To add a client run .wireguard-install add-client client-name IP"
-echo "For Example: .wireguard-install add-client MacBook 10.0.0.16"
+echo "For Example: .wireguard-install add-client MacBook 192.168.10.2"
 echo ""
 exit
 else
