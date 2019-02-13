@@ -13,7 +13,7 @@ chmod +x wireguard-install.sh
 ```
 Then run it :
 ```
-./wireguard-install.sh
+./wireguard-install.sh install
 ```
 You need to run the script as root.
 
