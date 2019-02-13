@@ -1,9 +1,6 @@
 ECHO_GREEN="echo -e \e[32m" #SUCCESS
 NC="\e[0m" # clears color
 
-$ECHO_GREEN"Skipping NGINX setup..."$NC
-
-
 source /etc/wireguard/wg.conf > /dev/null 2>&1
 
 function install () {
