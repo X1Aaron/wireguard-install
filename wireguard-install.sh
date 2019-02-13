@@ -106,11 +106,11 @@ wg-quick up wg0
 echo ""
 sudo wg show
 echo ""
-$ECHO_GREEN"### /etc/wireguard/clients/$1.conf ####"$NC
+$ECHO_GREEN"### /etc/wireguard/clients/$1/$1.conf ####"$NC
 echo ""
-cat /etc/wireguard/clients/$1.conf
+cat /etc/wireguard/clients/$1/$1.conf
 echo ""
-$ECHO_GREEN"### /etc/wireguard/clients/$1.conf ####"$NC
+$ECHO_GREEN"### /etc/wireguard/clients/$1/$1.conf ####"$NC
 echo ""
 }
 
