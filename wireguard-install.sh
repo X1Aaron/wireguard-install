@@ -52,35 +52,29 @@ echo "WireGuard Server Setup Complete!..."
 echo ""
 sudo wg show
 echo ""
-
-create_client
 }
 
-function create_client () {
-echo Client Name?
-read CLIENT_NAME
-echo IP Address?
-read CLIENT_IP
-mkdir /etc/wireguard/clients/$CLIENT_NAME/
-wg genkey | tee /etc/wireguard/clients/$CLIENT_NAME/private_key | wg pubkey > /etc/wireguard/clients/$CLIENT_NAME/public_key
-CLIENT_PRIVATE_KEY=`cat /etc/wireguard/clients/$CLIENT_NAME/private_key`
-CLIENT_PUBLIC_KEY=`cat /etc/wireguard/clients/$CLIENT_NAME/public_key`
-echo "[Interface]" >> /etc/wireguard/clients/$CLIENT_NAME.conf
-echo "Address = $CLIENT_IP/32" >> /etc/wireguard/clients/$CLIENT_NAME.conf
-echo "PrivateKey = $CLIENT_PRIVATE_KEY" >> /etc/wireguard/clients/$CLIENT_NAME.conf
-echo "" >> /etc/wireguard/clients/$CLIENT_NAME.conf
-echo "[Peer]" >> /etc/wireguard/clients/$CLIENT_NAME.conf
-echo "PublicKey = $SERVER_PUBLIC_KEY" >> /etc/wireguard/clients/$CLIENT_NAME.conf
-echo "Endpoint = $PUBLIC_IP:51820" >> /etc/wireguard/clients/$CLIENT_NAME.conf
-echo "AllowedIPs = 0.0.0.0/0" >> /etc/wireguard/clients/$CLIENT_NAME.conf
+function add-client () {
+mkdir /etc/wireguard/clients/$1/
+wg genkey | tee /etc/wireguard/clients/$1/private_key | wg pubkey > /etc/wireguard/clients/$1/public_key
+CLIENT_PRIVATE_KEY=`cat /etc/wireguard/clients/$1/private_key`
+CLIENT_PUBLIC_KEY=`cat /etc/wireguard/clients/$1/public_key`
+echo "[Interface]" >> /etc/wireguard/clients/$1.conf
+echo "Address = $2/32" >> /etc/wireguard/clients/$1.conf
+echo "PrivateKey = $CLIENT_PRIVATE_KEY" >> /etc/wireguard/clients/$1.conf
+echo "" >> /etc/wireguard/clients/$1.conf
+echo "[Peer]" >> /etc/wireguard/clients/$1.conf
+echo "PublicKey = $SERVER_PUBLIC_KEY" >> /etc/wireguard/clients/$1.conf
+echo "Endpoint = $PUBLIC_IP:51820" >> /etc/wireguard/clients/$1.conf
+echo "AllowedIPs = 0.0.0.0/0" >> /etc/wireguard/clients/$1.conf
 echo "" >> /etc/wireguard/wg0.conf
 echo "[Peer]" >> /etc/wireguard/wg0.conf
 echo "PublicKey = $CLIENT_PUBLIC_KEY" >> /etc/wireguard/wg0.conf
-echo "AllowedIPs = $CLIENT_IP" >> /etc/wireguard/wg0.conf
+echo "AllowedIPs = $2" >> /etc/wireguard/wg0.conf
 wg-quick down wg0
 wg-quick up wg0
 sudo wg show
-cat /etc/wireguard/clients/$CLIENT_NAME.conf
+cat /etc/wireguard/clients/$1.conf
 }
 
 # Check if WireGuard is already installed
