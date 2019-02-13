@@ -1,6 +1,6 @@
 
-mkdir /etc/wireguard
-touch /etc/wireguard/wg.conf
+mkdir /etc/wireguard > /dev/null 2>&1
+touch /etc/wireguard/wg.conf > /dev/null 2>&1
 source /etc/wireguard/wg.conf > /dev/null 2>&1
 
 function installWireGuard () {
