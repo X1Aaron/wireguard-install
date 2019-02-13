@@ -18,6 +18,7 @@ $ECHO_GREEN"Finding Public IP Address..."$NC
 PUBLIC_IP=`curl -s ifconfig.me`
 echo "Public IP: $PUBLIC_IP"
 echo "PUBLIC_IP=$PUBLIC_IP" >> /etc/wireguard/wg.conf
+echo ""
 $ECHO_GREEN"Adding Firewall Rules and Enabling Firewall..."$NC
 ufw allow ssh
 ufw allow 51820/udp
