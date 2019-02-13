@@ -6,7 +6,6 @@ echo ""
 echo "Make sure this system in completely update to date before proceeding"
 echo ""
 read -n1 -r -p "Press any key to continue..."
-
 echo "Finding Public IP Address..."
 PUBLIC_IP=`curl -s ifconfig.me`
 echo "Public IP: $PUBLIC_IP"
@@ -53,6 +52,9 @@ echo "WireGuard Server Setup Complete!..."
 echo ""
 sudo wg show
 echo ""
+echo "WireGuard is installed!"
+echo "To add a client run .wireguard-install add-client client-name IP"
+echo "For Example: .wireguard-install add-client MacBook 192.168.10.2"
 }
 
 function add-client () {
