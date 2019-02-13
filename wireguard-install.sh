@@ -47,7 +47,7 @@ chmod -v 600 /etc/wireguard/wg0.conf
 echo "Starting WireGuard..."
 wg-quick up wg0
 echo "Enabling WireGuard Service..."
-systemctl enable wg-quick@wg0.service #Enable the interface at boot
+systemctl enable wg-quick@wg0.service
 echo "WireGuard Server Setup Complete!..."
 echo ""
 sudo wg show
