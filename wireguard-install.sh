@@ -8,7 +8,7 @@ $ECHO_GREEN"This system in completely updated and rebooted before proceeding"$NC
 echo ""
 read -n1 -r -p "Press any key to continue... or CTRL + C to cancel"
 echo ""
-echo "Creating Folders and Files..."$NC
+$ECHO_GREEN"Creating Folders and Files..."$NC
 mkdir /etc/wireguard
 touch /etc/wireguard/wg.conf
 mkdir /etc/wireguard/server/
