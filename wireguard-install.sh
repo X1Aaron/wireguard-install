@@ -1,7 +1,7 @@
 
 source /etc/wireguard/wg.conf > /dev/null 2>&1
 
-function installWireGuard () {
+function install () {
 echo ""
 echo "This system in completely updated and rebooted before proceeding"
 echo ""
@@ -87,17 +87,5 @@ echo ""
 echo "You can also find this .conf file here: /etc/wireguard/clients/$1.conf"
 echo ""
 }
-
-# Check if WireGuard is already installed
-if [[ -e /etc/wireguard/wg0.conf ]]; then
-echo ""
-echo "WireGuard is already installed!"
-echo "To add a client run ./wireguard-install.sh add-client client-name IP"
-echo "For Example: ./wireguard-install.sh add-client macbook 192.168.10.2"
-echo ""
-exit
-else
-	installWireGuard
-fi
 
 $@
