@@ -90,7 +90,7 @@ echo "" >> /etc/wireguard/clients/$1/$1.conf
 echo "[Peer]" >> /etc/wireguard/clients/$1/$1.conf
 echo "PublicKey = $SERVER_PUBLIC_KEY" >> /etc/wireguard/clients/$1/$1.conf
 echo "Endpoint = $PUBLIC_IP:51820" >> /etc/wireguard/clients/$1/$1.conf
-echo "AllowedIPs = 0.0.0.0/0" >> /etc/wireguard/clients/$1/$1.conf
+echo "AllowedIPs = 0.0.0.0/0,::/0" >> /etc/wireguard/clients/$1/$1.conf
 echo ""
 $ECHO_GREEN"Updating Server..."$NC
 echo "" >> /etc/wireguard/wg0.conf
