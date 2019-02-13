@@ -64,10 +64,11 @@ $ECHO_GREEN"WireGuard Server Setup Complete!..."$NC
 echo ""
 sudo wg show
 echo ""
-$ECHO_GREEN"WireGuard is installed!"$NC
+$ECHO_GREEN"WireGuard Server is installed!"$NC
 echo ""
 $ECHO_GREEN"To add a client run ./wireguard-install.sh add-client client-name IP"$NC
 $ECHO_GREEN"For Example: ./wireguard-install.sh add-client macbook 192.168.10.2"$NC
+echo ""
 }
 
 function add-client () {
