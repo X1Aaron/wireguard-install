@@ -39,8 +39,8 @@ echo "Address = 192.168.10.1/24" >> /etc/wireguard/wg0.conf
 echo "PrivateKey = $SERVER_PRIVATE_KEY" >> /etc/wireguard/wg0.conf
 echo "ListenPort = 51820" >> /etc/wireguard/wg0.conf
 echo ""
-PostUp = iptables -t nat -A POSTROUTING -o ens3 -j MASQUERADE; ip6tables -t nat -A POSTROUTING -o ens3 -j MASQUERADE >> /etc/wireguard/wg0.conf
-PostDown = iptables -t nat -D POSTROUTING -o ens3 -j MASQUERADE; ip6tables -t nat -D POSTROUTING -o ens3 -j MASQUERADE >> /etc/wireguard/wg0.conf
+echo "PostUp = iptables -t nat -A POSTROUTING -o ens3 -j MASQUERADE; ip6tables -t nat -A POSTROUTING -o ens3 -j MASQUERADE" >> /etc/wireguard/wg0.conf
+echo "PostDown = iptables -t nat -D POSTROUTING -o ens3 -j MASQUERADE; ip6tables -t nat -D POSTROUTING -o ens3 -j MASQUERADE" >> /etc/wireguard/wg0.conf
 echo ""
 echo "Setting Permissions..."
 chown -v root:root /etc/wireguard/wg0.conf
