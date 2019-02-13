@@ -17,8 +17,6 @@ Then run it :
 ```
 You need to run the script as root.
 
-The first time you run it, you'll have to answer a few questions to setup your VPN server.
-
 To add a client run .wireguard-install add-client client-name IP
 
 For Example:
