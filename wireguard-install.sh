@@ -58,12 +58,15 @@ echo "For Example: ./wireguard-install.sh add-client macbook 192.168.10.2"
 }
 
 function add-client () {
+echo ""
 echo "Creating Directory - /etc/wireguard/clients/$1/"
 mkdir /etc/wireguard/clients/$1/
+echo ""
 echo "Generating Client Keys..."
 wg genkey | tee /etc/wireguard/clients/$1/private_key | wg pubkey > /etc/wireguard/clients/$1/public_key
 CLIENT_PRIVATE_KEY=`cat /etc/wireguard/clients/$1/private_key`
 CLIENT_PUBLIC_KEY=`cat /etc/wireguard/clients/$1/public_key`
+echo ""
 echo "Creating Client .conf File..."
 echo "# $1" >> /etc/wireguard/clients/$1.conf
 echo "[Interface]" >> /etc/wireguard/clients/$1.conf
@@ -80,6 +83,7 @@ echo "# $1" >> /etc/wireguard/wg0.conf
 echo "[Peer]" >> /etc/wireguard/wg0.conf
 echo "PublicKey = $CLIENT_PUBLIC_KEY" >> /etc/wireguard/wg0.conf
 echo "AllowedIPs = $2" >> /etc/wireguard/wg0.conf
+echo ""
 echo "Restarting WireGuard..."
 echo ""
 wg-quick down wg0
