@@ -79,7 +79,9 @@ echo "AllowedIPs = $2" >> /etc/wireguard/wg0.conf
 wg-quick down wg0
 wg-quick up wg0
 sudo wg show
+echo ""
 cat /etc/wireguard/clients/$1.conf
+echo ""
 }
 
 # Check if WireGuard is already installed
