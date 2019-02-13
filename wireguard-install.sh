@@ -4,7 +4,7 @@ source /etc/wireguard/wg.conf > /dev/null 2>&1
 
 function install () {
 echo ""
-$ECHO_GREEN"This system in completely updated and rebooted before proceeding"$NC
+$ECHO_GREEN"This system must be completely updated and rebooted before proceeding"$NC
 echo ""
 read -n1 -r -p "Press any key to continue... or CTRL + C to cancel"
 echo ""
