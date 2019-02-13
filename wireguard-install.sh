@@ -69,6 +69,7 @@ echo "PublicKey = $SERVER_PUBLIC_KEY" >> /etc/wireguard/clients/$1.conf
 echo "Endpoint = $PUBLIC_IP:51820" >> /etc/wireguard/clients/$1.conf
 echo "AllowedIPs = 0.0.0.0/0" >> /etc/wireguard/clients/$1.conf
 echo "" >> /etc/wireguard/wg0.conf
+echo "# $1" >> /etc/wireguard/wg0.conf
 echo "[Peer]" >> /etc/wireguard/wg0.conf
 echo "PublicKey = $CLIENT_PUBLIC_KEY" >> /etc/wireguard/wg0.conf
 echo "AllowedIPs = $2" >> /etc/wireguard/wg0.conf
