@@ -80,7 +80,9 @@ wg-quick down wg0
 wg-quick up wg0
 sudo wg show
 echo ""
+echo "### $1.conf starts here ####"
 cat /etc/wireguard/clients/$1.conf
+echo "### $1.conf ends here ####"
 echo ""
 }
 
