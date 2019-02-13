@@ -1,6 +1,5 @@
 ECHO_GREEN="echo -e \e[32m" #SUCCESS
-NC="\e[0m" # clears color
-
+NC="\e[0m" # clear
 source /etc/wireguard/wg.conf > /dev/null 2>&1
 
 function install () {
@@ -9,8 +8,13 @@ $ECHO_GREEN"This system in completely updated and rebooted before proceeding"$NC
 echo ""
 read -n1 -r -p "Press any key to continue... or CTRL + C to cancel"
 echo ""
-$ECHO_GREEN"Finding Public IP Address..."$NC
+echo "Creating Folders and Files..."$NC
+mkdir /etc/wireguard
+touch /etc/wireguard/wg.conf
+mkdir /etc/wireguard/server/
+mkdir /etc/wireguard/clients/
 echo ""
+$ECHO_GREEN"Finding Public IP Address..."$NC
 PUBLIC_IP=`curl -s ifconfig.me`
 echo "Public IP: $PUBLIC_IP"
 echo "PUBLIC_IP=$PUBLIC_IP" >> /etc/wireguard/wg.conf
@@ -28,12 +32,6 @@ echo ""
 $ECHO_GREEN"Enabling IPv4 Forwarding..."$NC
 echo "net.ipv4.ip_forward = 1 net.ipv6.conf.all.forwarding = 1" > /etc/sysctl.d/wg.conf
 sysctl --system
-echo ""
-echo "Creating Folders and Files..."$NC
-mkdir /etc/wireguard
-touch /etc/wireguard/wg.conf
-mkdir /etc/wireguard/server/
-mkdir /etc/wireguard/clients/
 echo ""
 $ECHO_GREEN"Generating Server Keys..."$NC
 wg genkey | tee /etc/wireguard/server/private_key | wg pubkey > /etc/wireguard/server/public_key
