@@ -83,43 +83,13 @@ sudo wg show
 cat /etc/wireguard/clients/$CLIENT_NAME.conf
 }
 
-function manageMenu () {
-
-	clear
-	echo "Welcome to WireGuard-install!"
-	echo "The git repository is available at: https://github.com/xxx/wireguard-install"
-	echo ""
-	echo "It looks like WireGuard is already installed."
-	echo ""
-	echo "What do you want to do?"
-	echo "   1) Add a New Client"
-	echo "   2) Revoke existing peer"
-	echo "   3) Remove WireGuard"
-	echo "   4) Exit"
-	until [[ "$MENU_OPTION" =~ ^[1-4]$ ]]; do
-		read -rp "Select an option [1-4]: " MENU_OPTION
-	done
-
-	case $MENU_OPTION in
-		1)
-			create_client
-		;;
-		2)
-			revokeClient
-		;;
-		3)
-			removeWireGuard
-		;;
-		4)
-			exit 0
-		;;
-	esac
-}
-
 # Check if WireGuard is already installed
 if [[ -e /etc/wireguard/wg0.conf ]]; then
-	manageMenu
+echo "WireGuard is already installed!"
+echo "To add a client run .wireguard-install add_client client-name IP"
+echo "For Example: .wireguard-install add_client MacBook 10.0.0.16
 else
 	installWireGuard
 fi
 
+$@
