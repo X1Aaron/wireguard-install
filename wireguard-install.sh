@@ -96,7 +96,7 @@ $ECHO_GREEN"Updating Server..."$NC
 echo "" >> /etc/wireguard/wg0.conf
 echo "[Peer] #$1" >> /etc/wireguard/wg0.conf
 echo "PublicKey = $CLIENT_PUBLIC_KEY" >> /etc/wireguard/wg0.conf
-echo "AllowedIPs = $2/32" >> /etc/wireguard/wg0.conf
+echo "AllowedIPs = $2" >> /etc/wireguard/wg0.conf
 echo ""
 $ECHO_GREEN"Restarting WireGuard..."$NC
 echo ""
