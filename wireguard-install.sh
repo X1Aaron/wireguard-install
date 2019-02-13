@@ -84,6 +84,8 @@ echo "### $1.conf starts here ####"
 cat /etc/wireguard/clients/$1.conf
 echo "### $1.conf ends here ####"
 echo ""
+echo "You can also find this .conf file here: /etc/wireguard/clients/$1.conf"
+echo ""
 }
 
 # Check if WireGuard is already installed
